@@ -27,4 +27,8 @@ Route::get('users','AnyController@index') ;
 
 Route::get('users/{id}','AnyController@show') ;
 
+//Route::get('products' , 'ProductController@index') ;
+
+Route::resource('products' , 'ProductController') ;
+
 //Route::resource() ;
