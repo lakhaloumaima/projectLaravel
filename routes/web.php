@@ -17,8 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home','IndexController@home') ;
-
 // Route::view('/home','home') ;
 
+Route::get('home','IndexController@home') ;
+
 Route::get('users/{id}','IndexController@show') ;
+
+Route::get('users','AnyController@index') ;
+
+Route::get('users/{id}','AnyController@show') ;
+
+//Route::resource() ;

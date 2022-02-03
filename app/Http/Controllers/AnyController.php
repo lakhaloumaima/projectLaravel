@@ -13,7 +13,8 @@ class AnyController extends Controller
      */
     public function index()
     {
-        //
+        $myArray = [1,2,3,4] ;
+        return view('users.index')->with('array' , $myArray) ;
     }
 
     /**
@@ -46,6 +47,7 @@ class AnyController extends Controller
     public function show($id)
     {
         //
+        return view('users.index') -> with('id',$id)  ;
     }
 
     /**
