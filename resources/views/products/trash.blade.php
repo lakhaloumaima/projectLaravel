@@ -2,15 +2,12 @@
 
 @section('content')
     <div class="jumbotron container"> 
-    <span> 
-     <a class="btn btn-primary btn-lg" href="{{route ('products.create')}}" role="button">Create </a> <br>
-    </span>
-    <span> 
-      <a class="btn btn-danger btn-lg" href="{{route ('product.trash')}}" role="button">Trash </a> <br>
-     </span>
-    
+      <h1> Trashed Products : 
+        <span> 
+          <a class="btn btn-primary btn-lg" href="{{route ('product.index')}}" role="button">Products </a> <br>
+         </span>
+      </h1>
     </div>
-    
     <div class="container" >
       @if ($message = Session::get('success'))
         <div class="alert alert-success" role="alert">
@@ -43,24 +40,14 @@
                     <td>
                       <div class="container">
                         <div class="row">
+                          
                           <div class="col-sm">
-                            <a class="btn btn-success" href="{{route ('products.edit' , $item->id )}}"> Edit</a>
-                          </div>
-                          <div class="col-sm">
-                            <a class="btn btn-primary" href="{{route ('products.show' , $item->id )}}">Show </a>
+                            <a class="btn btn-success" href="{{route ('product.back.from.trash' , $item->id )}}">Restore </a>
                           </div>
                           <div class="col-sm">
-                            <a class="btn btn-warning" href="{{route ('soft.delete' , $item->id )}}">Soft Delete</a>
+                            <a class="btn btn-danger" href="{{route ('product.delete.from.database' , $item->id )}}">Delete</a>
                           </div>
-
-                         <!-- <div class="col-sm">
-                            <form action="{{route ('products.destroy' , $item->id)}}" method="POST">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="btn btn-danger"> Delete </button>
-                          </form>
-                          </div>
-                        -->
+                         
                         </div>
                       </div>
                        

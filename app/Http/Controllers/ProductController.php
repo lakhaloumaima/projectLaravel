@@ -20,6 +20,15 @@ class ProductController extends Controller
         
         return view('products.index' , compact ('products')) ;
     }
+    
+    public function trashedProducts()
+    {
+        //
+        //$product = Product::all() ;
+        //$products = Product::withoutTrashed()->latest()->paginate(4) ;
+        $products = Product::onlyTrashed()->latest()->paginate(4) ;
+        return view('products.trash' , compact ('products')) ;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -109,5 +118,30 @@ class ProductController extends Controller
         $product->delete() ;
         return redirect()->route('products.index')
             ->with('success' , 'product deleted sucessfully') ;
+    }
+
+    public function softDelete( $id)
+    {
+        //
+        $product = Product::find($id)->delete() ;
+        return redirect()->route('products.index')
+            ->with('success' , 'product deleted sucessfully') ;
+    }
+
+    public function backFromSoftDelete( $id)
+    {
+        //
+        $product = Product::onlyTrashed()->where('id' , $id)->first()->restore() ;
+        return redirect()->route('products.index')
+            ->with('success' , 'product restored sucessfully') ;
+    }
+
+    public function  deleteForEver(  $id)
+    {
+
+        $product = Product::onlyTrashed()->where('id' , $id)->forceDelete();
+
+        return redirect()->route('product.trash')
+        ->with('success','product deleted successflly') ;
     }
 }
